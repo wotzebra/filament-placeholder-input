@@ -49,9 +49,19 @@ class PlaceholderInput extends Field
 
     public function getVariables(): ?array
     {
-        return $this->evaluate($this->variables) ?? method_exists($this->getRecord(), 'getPlaceholderVariables')
-            ? $this->getRecord()->getPlaceholderVariables()
-            : [];
+        $variables = $this->evaluate($this->variables);
+
+        if ($variables !== null) {
+            return $variables;
+        }
+
+        $record = $this->getRecord();
+
+        if (! $record || ! method_exists($record, 'getPlaceholderVariables')) {
+            return [];
+        }
+
+        return $record->getPlaceholderVariables();
     }
 
     public function defaultLink(string|Closure $defaultLink): static
