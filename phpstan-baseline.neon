@@ -1,6 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Cannot call method getPlaceholderVariables\\(\\) on array\\<string, mixed\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Model.$#"
-			count: 1
-			path: src/Filament/Forms/Components/PlaceholderInput.php
